@@ -1,0 +1,2 @@
+accurancy KNN 0.833
+Precision KNN 0.632

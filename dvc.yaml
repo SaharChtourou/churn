@@ -1,0 +1,9 @@
+stages:
+  train:
+    cmd: python train.py
+    deps:
+      - data/Churn_Modelling.csv
+    outs:
+      - confusion_matrix.png
+      - roc_curve.png
+      - metrics.txt

@@ -11,6 +11,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix,accuracy_score,precision_score
 from sklearn import metrics
+from sklearn.metrics import classification_report
+import csv
 
 df=pd.read_csv('./data/Churn_Modelling.csv')
 x=df.iloc[:,3:13].values
@@ -26,7 +28,7 @@ x_train.shape
 sc=StandardScaler()
 x_train_sc=sc.fit_transform(x_train)
 x_test_sc=sc.fit_transform(x_test)
-knn=KNeighborsClassifier (n_neighbors = 5)
+knn=KNeighborsClassifier (n_neighbors = 3)
 knn.fit(x_train_sc,y_train)
 y_predictKNN=knn.predict(x_test_sc)
 
@@ -42,7 +44,10 @@ ax.set_yticklabels([''] )
 plt.xlabel('Predicted Values')
 plt.ylabel('Actual Values')
 plt.savefig("confusion_matrix")
+
 plt.clf()
+
+
 
 
 print('accurancy KNN {0:.3f}'.format(accuracy_score(y_test,y_predictKNN)))
@@ -53,6 +58,8 @@ with open('metrics.txt', 'w') as file:
 
 fpr,tpr,thr=metrics.roc_curve(y_test,y_predictKNN)
 auc=metrics.auc(fpr,tpr)
+
+
 plt.plot(fpr,tpr,'-',lw=3,label='gamma=0.01,AUC=%2.f'%auc)  
 plt.plot([0, 1], [0, 1], linestyle='--')
 
@@ -62,3 +69,5 @@ plt.title ('KNN  Roc Curves')
 plt.legend(loc='lower right') 
 
 plt.savefig("roc_curve")
+
+
