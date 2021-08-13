@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix,accuracy_score,precision_score
 from sklearn import metrics
-from sklearn.metrics import classification_report
+import pickle
 import csv
 
 df=pd.read_csv('./data/Churn_Modelling.csv')
@@ -70,4 +70,5 @@ plt.legend(loc='lower right')
 
 plt.savefig("roc_curve")
 
-
+with open('Churn_Modelling.pkl', 'wb') as f:
+    pickle.dump(fit_models['knn'], f)
