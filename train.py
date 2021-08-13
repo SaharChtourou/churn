@@ -71,4 +71,4 @@ plt.legend(loc='lower right')
 plt.savefig("roc_curve")
 
 with open('Churn_Modelling.pkl', 'wb') as f:
-    pickle.dump(fit_models['knn'], f)
+    pickle.dump(knn, f)
